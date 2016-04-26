@@ -20,11 +20,9 @@ namespace TheWorldVS
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
-            app.UseStaticFiles();
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync($"Hello World!!! {context.Request.Path}");
-            //});
+            // Important order matters - creating a chain of middleware
+            app.UseDefaultFiles();
+            app.UseStaticFiles();            
         }
 
         // Entry point for the application.
