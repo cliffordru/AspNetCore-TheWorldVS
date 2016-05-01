@@ -56,12 +56,40 @@ input[type=text], input[type=password],textarea {
     overflow: hidden;
     left: 0;
     margin: 0; /*remove space between side bar and main wrapper (need to also set on wrapper and body)*/
+    -webkit-transition: left ease .25s;
+    -moz-transition: left ease .25s;
+    -o-transition: left ease .25s;
+    transition: left ease .25s;
 }
 
 #sidebar a {
     color: #eee;
 }
 
+#sidebar.hide-sidebar {
+    left: -250px;
+    -webkit-transition: left ease .25s;
+    -moz-transition: left ease .25s;
+    -o-transition: left ease .25s;
+    transition: left ease .25s; /* css transistion */
+}
+
 #wrapper {
     margin: 0 0 0 250px;
+    -webkit-transition: margin-left ease .25s;
+    -moz-transition: margin-left ease .25s;
+    -o-transition: margin-left ease .25s;
+    transition: margin-left ease .25s;
 }
+
+    #wrapper.hide-sidebar {
+        margin-left: 0;
+        -moz-transition: margin-left ease .25s;
+        -o-transition: margin-left ease .25s;
+        -webkit-transition: margin-left ease .25s;
+        transition: margin-left ease .25s;
+    }
+
+
+
+

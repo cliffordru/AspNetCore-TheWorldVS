@@ -23,5 +23,16 @@
     //    });
 
     var $sidebarAndWrapper = $("#sidebar,#wrapper"); //wrapped set; convention to name jquery variable with $
+
+    $("#sidebarToggle")
+        .on("click",
+            function() {
+                $sidebarAndWrapper.toggleClass("hide-sidebar");
+                if ($sidebarAndWrapper.hasClass("hide-sidebar")) {
+                    $(this).text("Show Sidebar");
+                } else {
+                    $(this).text("Hide Sidebar");
+                }
+            });    
 })();
 
