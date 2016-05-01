@@ -58,6 +58,10 @@ input[type=text], input[type=password],textarea {
     margin: 0; /*remove space between side bar and main wrapper (need to also set on wrapper and body)*/
 }
 
+#sidebar a {
+    color: #eee;
+}
+
 #wrapper {
     margin: 0 0 0 250px;
 }
