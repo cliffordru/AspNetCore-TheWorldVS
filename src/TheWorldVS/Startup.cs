@@ -15,13 +15,14 @@ namespace TheWorldVS
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
             // Important order matters - creating a chain of middleware
-            app.UseDefaultFiles();
+            // app.UseDefaultFiles(); // No longer want index.html to be serverd now that we are adding MVC support
             app.UseStaticFiles();            
         }
 
