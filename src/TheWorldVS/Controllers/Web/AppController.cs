@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TheWorldVS.Controllers.Web
 {
-    public class AppController
+    public class AppController : Controller
     {
         public IActionResult Index()
         {

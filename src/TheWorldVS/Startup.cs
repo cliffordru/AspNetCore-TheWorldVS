@@ -23,7 +23,18 @@ namespace TheWorldVS
         {
             // Important order matters - creating a chain of middleware
             // app.UseDefaultFiles(); // No longer want index.html to be serverd now that we are adding MVC support
-            app.UseStaticFiles();            
+            app.UseStaticFiles();
+
+            app.UseMvc(); // listen for requests in MVC style           
+
+            app.UseMvc(config =>
+            {
+                config.MapRoute(
+                    name: "Default",
+                    template: "{controller}/{action}/{id?}", // id optional due to ?
+                    defaults: new { controller = "App", action = "Index" }
+                    );
+            });
         }
 
         // Entry point for the application.
