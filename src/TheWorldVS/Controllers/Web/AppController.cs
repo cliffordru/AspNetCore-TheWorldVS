@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheWorldVS.ViewModels;
 
 namespace TheWorldVS.Controllers.Web
 {
@@ -20,6 +21,12 @@ namespace TheWorldVS.Controllers.Web
         }
 
         public IActionResult Contact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Contact(ContactViewModel model)
         {
             return View();
         }
