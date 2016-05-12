@@ -6,6 +6,7 @@ using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
 using Microsoft.Extensions.DependencyInjection;
+using TheWorldVS.Services;
 
 namespace TheWorldVS
 {
@@ -16,6 +17,12 @@ namespace TheWorldVS
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+#if DEBUG
+            services.AddScoped<IMailService, DebugMailService>();
+#else
+            //services.AddScoped<IMailService, MailService>();
+#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
