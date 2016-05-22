@@ -62,9 +62,9 @@ input[type=text], input[type=password],textarea {
     transition: left ease .25s;
 }
 
-#sidebar a {
+/*#sidebar a {
     color: #eee;
-}
+}*/
 
 #sidebar.hide-sidebar {
     left: -250px;
