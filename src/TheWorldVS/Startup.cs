@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using TheWorldVS.Services;
+using TheWorldVS.Models;
 
 namespace TheWorldVS
 {
@@ -29,7 +30,11 @@ namespace TheWorldVS
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddMvc();
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<WorldContext>();
 
 #if DEBUG
             services.AddScoped<IMailService, DebugMailService>();
