@@ -36,6 +36,15 @@ namespace TheWorldVS
                 .AddSqlServer()
                 .AddDbContext<WorldContext>();
 
+            /* Imptant to note that could use services.AddScoped<WorldContextSeedData>();
+             * however scope says during life of REQUEST will reuse instance of class.
+             * Since only need instance once during configure, use transient so the obj
+             * will be destroyed quickly 
+             * services.AddSingleton - only one instance for life of web server
+             * services.AddInstance - pass in constructed obj
+             * --------------------------------------------------------------------------*/
+            services.AddTransient<WorldContextSeedData>();
+
 #if DEBUG
             services.AddScoped<IMailService, DebugMailService>();
 #else
@@ -44,7 +53,7 @@ namespace TheWorldVS
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, WorldContextSeedData seeder)
         {
             // Important order matters - creating a chain of middleware
             // app.UseDefaultFiles(); // No longer want index.html to be serverd now that we are adding MVC support
@@ -60,6 +69,8 @@ namespace TheWorldVS
                     defaults: new { controller = "App", action = "Index" }
                     );
             });
+
+            seeder.EnsureSeedData();
         }
 
         // Entry point for the application.
