@@ -44,6 +44,7 @@ namespace TheWorldVS
              * services.AddInstance - pass in constructed obj
              * --------------------------------------------------------------------------*/
             services.AddTransient<WorldContextSeedData>();
+            services.AddScoped<IWorldRepository, WorldRepository>();
 
 #if DEBUG
             services.AddScoped<IMailService, DebugMailService>();
