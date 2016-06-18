@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using TheWorldVS.Services;
 using TheWorldVS.Models;
+using Microsoft.Extensions.Logging;
 
 namespace TheWorldVS
 {
@@ -32,6 +33,9 @@ namespace TheWorldVS
         {
             
             services.AddMvc();
+
+            services.AddLogging();
+
             services.AddEntityFramework()
                 .AddSqlServer()
                 .AddDbContext<WorldContext>();
@@ -54,8 +58,11 @@ namespace TheWorldVS
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, WorldContextSeedData seeder)
+        public void Configure(IApplicationBuilder app, WorldContextSeedData seeder, ILoggerFactory loggerFactory)
         {
+            // Can add other providers for db, etc. In prod log level should be error or critical
+            loggerFactory.AddDebug(LogLevel.Warning);
+
             // Important order matters - creating a chain of middleware
             // app.UseDefaultFiles(); // No longer want index.html to be serverd now that we are adding MVC support
             app.UseStaticFiles();
