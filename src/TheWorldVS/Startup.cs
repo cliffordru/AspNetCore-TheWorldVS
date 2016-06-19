@@ -11,6 +11,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 using TheWorldVS.Services;
 using TheWorldVS.Models;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 
 namespace TheWorldVS
 {
@@ -32,7 +33,12 @@ namespace TheWorldVS
         public void ConfigureServices(IServiceCollection services)
         {
             
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(opt =>
+                {
+                    opt.SerializerSettings.ContractResolver = 
+                    new CamelCasePropertyNamesContractResolver();
+                });
 
             services.AddLogging();
 
