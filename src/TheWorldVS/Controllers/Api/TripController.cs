@@ -7,6 +7,7 @@ using TheWorldVS.Models;
 
 namespace TheWorldVS.Controllers.Api
 {
+    [Route("api/trips")]
     public class TripController : Controller
     {
         private IWorldRepository _respository;
@@ -16,11 +17,17 @@ namespace TheWorldVS.Controllers.Api
             _respository = repository;
         }
 
-        [HttpGet("api/trips")]
+        [HttpGet("")]
         public JsonResult Get()
         {
             var trips = _respository.GetAllTripsWithStops();
             return Json(trips);
+        }
+
+        [HttpPost("")]
+        public JsonResult Post([FromBody]Trip newTrip)
+        {
+            return Json(true);
         }
     }
 }
