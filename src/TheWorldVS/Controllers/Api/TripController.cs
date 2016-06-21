@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using TheWorldVS.Models;
+using TheWorldVS.ViewModels;
 
 namespace TheWorldVS.Controllers.Api
 {
@@ -25,9 +27,16 @@ namespace TheWorldVS.Controllers.Api
         }
 
         [HttpPost("")]
-        public JsonResult Post([FromBody]Trip newTrip)
+        public JsonResult Post([FromBody]TripViewModel newTrip)
         {
-            return Json(true);
+            if(ModelState.IsValid)
+            {
+                Response.StatusCode = (int)HttpStatusCode.Created;
+                return Json(true);
+            }
+
+            Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            return Json(new { Message = "Failed", ModelState = ModelState });
         }
     }
 }
